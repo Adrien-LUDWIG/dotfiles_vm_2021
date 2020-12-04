@@ -108,6 +108,8 @@ alias gadd="git add"
 alias gcom="git commit -m"
 alias gtag="git tag -m 'tag' -a"
 alias gpush="git push --follow-tags"
+alias glog="git log --oneline"
+alias gsta="git status"
 alias valgrind="valgrind --leak-check=full --show-leak-kinds=all\
     --leak-resolution=high --track-origins=yes --vgdb=yes"
 
