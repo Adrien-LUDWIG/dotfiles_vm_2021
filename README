@@ -1,8 +1,9 @@
-Custom config files :
-./bashrc
-.vimrc
-config (polybar)
-.Xresource (rofi)
-config (i3)
+Custom config files for :
+bash
+vim
+polybar
+rofi
+i3
 
-
+# For the i3 theme search for this git repo of i3wm-themer :
+git@github.com:unix121/i3wm-themer.git

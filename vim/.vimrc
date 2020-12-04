@@ -121,10 +121,12 @@ au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
 " Set backup folder to get rid of these annoying '*~' files
-autocmd VimEnter * bash -c "mkdir /tmp/vim/"
-set backupdir=/tmp/vim//,.
-set directory=tmp/vim///,.
-set undodir=tmp/vim//,.
+"set backupdir=/tmp/vim//,.
+"set directory=tmp/vim///,.
+"set undodir=tmp/vim//,.
+set backupdir=~/.vim/tmp//,.
+set directory=~/.vim/tmp//,.
+set undodir=~/.vim/tmp//,.
 
 " Disable arrow keys
 noremap <Up> <Nop>
