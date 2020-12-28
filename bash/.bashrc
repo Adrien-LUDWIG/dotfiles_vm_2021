@@ -159,4 +159,7 @@ ex ()
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Clean .vim/tmp/
-rm ~/.vim/tmp/*
+touch ~/.vim/tmp/thisfilepreventsanerrorifdirisempty
+rm -f ~/.vim/tmp/*
+alias send="scp ~/Epita/prog/42sh/build/output.png ubuntu@42sh.ppelleti.fr:~/output.png"
+alias receive="scp ubuntu@42sh.ppelleti.fr:~/output.png ./"
