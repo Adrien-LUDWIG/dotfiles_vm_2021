@@ -16,11 +16,10 @@
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias mv="mv -i"                          # confirm before overwriting something
+alias dui='sudo du -s -h * | sort -h'
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
-alias la="ls -a"
-alias ls="ls -hAl --color=auto"
 alias gccc="gcc -std=c99 -Wall -Werror -Wextra -pedantic"
 alias gccd="gcc -std=c99 -Wall -Werror -Wextra -pedantic -g"
 alias gccf="gcc -std=c99 -Wall -Werror -Wextra -pedantic -g -fsanitize=address"

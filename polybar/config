@@ -1,29 +1,42 @@
+[colors]
+alert = #00ff00
+bright_gray = #828282
+dark_gray = #1f1f1f
+bright_red = #c21f1f
+medium_red = #b32929
+dark_red = #9c0202
+
+
+;;;;;;;
+; BAR ;
+;;;;;;;
+
 [bar/i3wmthemer_bar]
 width = 100%
 height = 20
 radius = 0
 fixed-center = true
 
-background = #1f1f1f
-foreground = #c21f1f
+background = ${colors.dark_gray}
+foreground = ${colors.bright_red}
 
 line-size = 3
-line-color = #00ff00
+line-color = ${colors.dark_red}
 
 border-size = 0
-border-color = #00ff00
+border-color = ${colors.dark_red}
 
 padding-left = 0
 padding-right = 2
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 0
 
 font-0 = "Source Code Pro Semibold:size=10;1"
 font-1 = "Font Awesome 5 Free:style=Solid:size=10;1"
 font-2 = "Font Awesome 5 Brands:size=10;1"
 
-modules-left = filesystem cpu
+modules-left = filesystem cpu memory pulseaudio battery eth
 modules-center = i3
 modules-right = date powermenu
 
@@ -35,6 +48,18 @@ override-redirect = false
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[settings]
+screenchange-reload = true
+
+;;;;;;;;;;;
+; MODULES ;
+;;;;;;;;;;;
+
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
@@ -42,26 +67,26 @@ index-sort = true
 wrapping-scroll = false
 
 label-mode-padding = 2
-label-mode-foreground = #828282
-label-mode-background = #1f1f1f
+label-mode-foreground = ${colors.bright_gray}
+label-mode-background = ${colors.dark_gray}
 
 label-focused = %index%
-label-focused-background = #b32929
-label-focused-foreground = #1f1f1f
+label-focused-background = ${colors.bright_red}
+label-focused-foreground = ${colors.dark_gray}
 label-focused-padding = 2
 
 label-unfocused = %index%
-label-unfocused-background = #9c0202
-label-unfocused-foreground = #1f1f1f
+label-unfocused-background = ${colors.dark_red}
+label-unfocused-foreground = ${colors.dark_gray}
 label-unfocused-padding = 2
 
 label-visible = %index%
-label-visible-background = #9c0202
-label-visible-foreground = #1f1f1f
+label-visible-background = ${colors.dark_red}
+label-visible-foreground = ${colors.dark_gray}
 label-visible-padding = 2
 
 label-urgent = %index%
-label-urgent-background = #BA2922
+label-urgent-background = ${colors.bright_red}
 label-urgent-padding = 2
 
 [module/wlan]
@@ -70,8 +95,8 @@ interface = net1
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-foreground = #1f1f1f
-format-connected-background = #9c0202
+format-connected-foreground = ${colors.dark_gray}
+format-connected-background = ${colors.dark_red}
 format-connected-padding = 2
 label-connected = %essid%
 
@@ -82,18 +107,18 @@ ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = #1f1f1f
+ramp-signal-foreground = ${colors.dark_gray}
 
 [module/eth]
 type = internal/network
 interface = enp0s3
 interval = 3.0
 
-format-connected-padding = 2
-format-connected-foreground = #1f1f1f
-format-connected-background = #9c0202
+format-connected-padding = 1
+format-connected-foreground = ${colors.dark_gray}
+format-connected-background = ${colors.dark_red}
 format-connected-prefix = " "
-format-connected-prefix-foreground = #1f1f1f
+format-connected-prefix-foreground = ${colors.dark_gray}
 label-connected = %local_ip%
 
 format-disconnected =
@@ -109,8 +134,8 @@ time-alt = %H:%M
 time = %H:%M:%S
 
 format-prefix = 
-format-foreground = #1f1f1f
-format-background = #9c0202
+format-foreground = ${colors.dark_gray}
+format-background = ${colors.dark_red}
 format-padding = 2
 
 label = %date% %time%
@@ -123,11 +148,11 @@ expand-right = true
 format-spacing = 1
 
 label-open = 
-label-open-foreground = #9c0202
+label-open-foreground = ${colors.dark_red}
 label-close =  cancel
-label-close-foreground = #9c0202
+label-close-foreground = ${colors.dark_red}
 label-separator = |
-label-separator-foreground = #9c0202
+label-separator-foreground = ${colors.dark_red}
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
@@ -151,15 +176,9 @@ menu-3-0-exec = i3 exit logout
 menu-3-1 = cancel
 menu-3-1-exec = menu-open-0
 
-[settings]
-screenchange-reload = true
-
-[global/wm]
-margin-top = 0
-margin-bottom = 0
-
 [module/filesystem]
 type = internal/fs
+format-mounted-prefix = " "
 
 ; Mountpoints to display
 mount-0 = /
@@ -182,6 +201,9 @@ spacing = 2
 ;   <bar-used>
 ;   <ramp-capacity>
 format-mounted = <label-mounted>
+format-mounted-foreground = ${colors.dark_gray}
+format-mounted-background = ${colors.dark_red}
+format-mounted-padding = 1
 
 ; Available tags:
 ;   <label-unmounted> (default)
@@ -197,7 +219,7 @@ format-unmounted = <label-unmounted>
 ;   %free%
 ;   %used%
 ; Default: %mountpoint% %percentage_free%%
-label-mounted = %mountpoint%: %percentage_free%% of %total%
+label-mounted = %free%
 
 ; Available tokens:
 ;   %mountpoint%
@@ -210,7 +232,7 @@ type = internal/cpu
 
 ; Seconds to sleep between updates
 ; Default: 1
-interval = 0.5
+interval = 1
 
 ; Available tags:
 ;   <label> (default)
@@ -224,7 +246,8 @@ format = <label> <ramp-coreload>
 ;   %percentage-sum% - Cumulative load on all cores
 ;   %percentage-cores% - load percentage for each core
 ;   %percentage-core[1-9]% - load percentage for specific core
-label = CPU %percentage%%
+label =  %percentage%%
+
 
 ; Spacing between individual per-core ramps
 ramp-coreload-spacing = 1
@@ -236,3 +259,99 @@ ramp-coreload-4 = ▅
 ramp-coreload-5 = ▆
 ramp-coreload-6 = ▇
 ramp-coreload-7 = █
+
+format-foreground = ${colors.dark_gray}
+format-background = ${colors.dark_red}
+format-padding = 1
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+interval = 5
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = ${colors.dark_gray}
+format-volume-background = ${colors.dark_red}
+format-volume-padding = 1
+
+label-volume = %percentage%%
+
+label-muted =  muted
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+; Right and Middle click
+click-right = pavucontrol
+; click-middle =
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 97
+
+format-charging = <label-charging>
+format-charging-prefix = " "
+label-charging = ${self.label-discharging}
+format-charging-foreground = ${colors.dark_gray}
+format-charging-background = ${colors.dark_red}
+format-charging-padding = 1
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
+format-discharging-foreground = ${colors.dark_gray}
+format-discharging-background = ${colors.dark_red}
+format-discharging-padding = 1
+
+format-full = <ramp-capacity>
+format-full-foreground = ${colors.dark_gray}
+format-full-background = ${colors.dark_red}
+format-full-padding = 1
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-0-background = ${colors.alert}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+
+label = %temperature:2:2%
+label-warn = %temperature:2:2%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-4-foreground = ${colors.secondary}
+
+[module/memory]
+type = internal/memory
+interval = 1
+format-prefix = " "
+format = <label>
+label = %gb_used% / %gb_free%
+
+format-foreground = ${colors.dark_gray}
+format-background = ${colors.dark_red}
+format-padding = 1
+
