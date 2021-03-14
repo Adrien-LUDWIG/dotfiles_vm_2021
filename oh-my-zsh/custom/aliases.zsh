@@ -30,6 +30,13 @@ alias scrot="scrot -s ~/Pictures/000.png"
 # alias glog="git log --oneline"
 alias vlgrnd="valgrind --leak-check=full --show-leak-kinds=all\
         --leak-resolution=high --track-origins=yes --vgdb=yes"
+alias gt='git tag -m "tag" -a'
+alias gpt='git push --follow-tags'
+
+#CPP
+alias gppp="g++ -Wall -Werror -Wextra -pedantic -std=c++17"
+alias gppd="g++ -Wall -Werror -Wextra -pedantic -std=c++17 -g"
+alias gppf="g++ -Wall -Werror -Wextra -pedantic -std=c++17 -g -fsanitize=address"
 
 #############
 ## Archive ##

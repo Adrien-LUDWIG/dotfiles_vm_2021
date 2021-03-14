@@ -40,8 +40,8 @@ modules-left = filesystem cpu memory pulseaudio battery eth
 modules-center = i3
 modules-right = date powermenu
 
-tray-position =
-;tray-padding =
+tray-position = left
+tray-padding = 5
 wm-restack = i3
 override-redirect = false
 
@@ -189,7 +189,7 @@ interval = 30
 
 ; Display fixed precision values
 ; Default: false
-fixed-values = false
+fixed-values = true
 
 ; Spacing between entries
 ; Default: 2
